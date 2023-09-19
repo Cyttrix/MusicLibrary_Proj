@@ -45,6 +45,14 @@
 				"header": []
 			},
 			"response": []
+		},
+		{
+			"name": "Likes",
+			"request": {
+				"method": "PUT",
+				"header": []
+			},
+			"response": []
 		}
 	]
 }
