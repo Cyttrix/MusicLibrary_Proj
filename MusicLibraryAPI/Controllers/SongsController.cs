@@ -56,10 +56,13 @@ namespace MusicLibraryAPI.Controllers
             {
                 return NotFound();
             }
-            song.SongTitle = tune.SongTitle;
-            song.SongArtist = tune.SongArtist;
-            song.SongLength = tune.SongLength;
-            song.SongLength = tune.SongLength;
+            song.Title = tune.Title;
+            song.Artist = tune.Artist;
+            song.Album = tune.Album;
+            song.ReleaseDate = tune.ReleaseDate;
+            song.Genre = tune.Genre;
+            _context.Songs.Update(song);
+            _context.SaveChanges();
             return Ok(song);
         }
 
@@ -75,6 +78,22 @@ namespace MusicLibraryAPI.Controllers
             _context.Songs.Remove(song);
             _context.SaveChanges();
             return NoContent();
+        }
+
+        // PUT api/<SongsController>/5/AddLike
+        [HttpPut("{id}/AddLike")]
+
+        public IActionResult Put(int id)
+        {
+            var song = _context.Songs.Find(id);
+            if (song == null)
+            {
+                return NotFound();
+            }
+            song.Likes += 1;
+            _context.Songs.Update(song);
+            _context.SaveChanges();
+            return Ok(song);
         }
     }
 }
